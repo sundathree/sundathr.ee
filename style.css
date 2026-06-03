@@ -1,10 +1,22 @@
 * {
     font-family: Georgia, serif;
-    color: #EEEEEE;
+    color: #F9F6EE
 }
 
-body {
-    background-image: url("assets/macacu-small.jpg");
-    background-size: contain;
-    padding: 1em;
+html {
+    min-height: 100vh;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.75)), url("assets/macacu-small.jpg");
+    background-size: cover;
+    background-position: center
+}
+
+.block1 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.block1 p {
+    color: #BD9C42
 }
