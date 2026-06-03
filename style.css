@@ -1,0 +1,10 @@
+* {
+    font-family: Georgia, serif;
+    color: #EEEEEE;
+}
+
+body {
+    background-image: url("assets/macacu-small.jpg");
+    background-size: contain;
+    padding: 1em;
+}
