@@ -10,13 +10,32 @@ html {
     background-position: center
 }
 
+p {
+    margin: 2px;
+}
+
+a {
+    color: #9cbd42;
+    margin: 2px;
+}
+
 .block1 {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%)
+    font-size: 18px;
+    padding-left: 16px;
+    padding-top: 16px;
+    margin: 2px;
+}
+
+.block1 h1 {
+    margin: 0px;
 }
 
 .block1 p {
-    color: #BD9C42
+    color: #bd9c42;
+}
+
+.links {
+    padding-left: 16px;
+    padding-top: 2px;
+    margin: 2px;
 }
