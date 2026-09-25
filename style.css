@@ -95,6 +95,13 @@ a:visited { color: var(--link-visited); }
     margin-bottom: 0.5em;
 }
 
+.posts li.empty {
+    list-style: none;
+    margin-left: -16px;
+    font-style: italic;
+    color: var(--muted);
+}
+
 .entry h1 {
     font-size: 1em;
     font-style: italic;

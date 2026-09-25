@@ -1,5 +1,12 @@
 let topZ = 0;
-document.querySelectorAll(".window").forEach(el => dragElement(el));
+const stacked = window.matchMedia("(max-width: 700px)"); // same breakpoint as style.css
+const windows = document.querySelectorAll(".window");
+windows.forEach(el => dragElement(el));
+
+// drop positions from dragging when the screen gets small enough to stack the windows
+stacked.addEventListener('change', e => {
+    if (e.matches) windows.forEach(el => el.style.top = el.style.left = "");
+});
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -24,6 +31,7 @@ function dragElement(elmnt) {
     }
 
     function dragMouseDown(e) {
+        if (stacked.matches) return;
         e.preventDefault();
         const {x, y} = getCoords(e);
         pos3 = x;
