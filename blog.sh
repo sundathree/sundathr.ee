@@ -1,21 +1,9 @@
 #!/usr/bin/env bash
-# Tiny blog tool. Every post is a folder blog/<name>/ holding one .md file
-# plus whatever pictures, videos etc. it uses. The .md starts with a header:
-#
-#   ---
-#   title: My post
-#   date: YYYY-MM-DD
-#   description: optional blurb for the home page
-#   ---
-#
-# A post is published once blog/<name>/index.html has been built from it
-# (using templates/post.html, which must keep its generator <meta> tag).
-# Folders starting with _ are drafts.
 set -euo pipefail
 shopt -s nullglob
 cd "$(dirname "$0")"
 
-marker='<meta name="generator" content="blog.sh">' # in templates/post.html, marks pages this script may overwrite
+marker='<meta name="generator" content="blog.sh">'
 
 usage() {
     cat <<EOF
@@ -33,7 +21,7 @@ EOF
 
 die() { echo "$*" >&2; exit 1; }
 
-header() { # header <key> <file>: value of "key:" in the --- block at the top
+header() {
     awk -v key="$1" '
         NR == 1 && $0 == "---"             { inside = 1; next }
         inside && $0 == "---"              { exit }
@@ -41,7 +29,7 @@ header() { # header <key> <file>: value of "key:" in the --- block at the top
     ' "$2"
 }
 
-body() { # body <file>: everything after the header
+body() {
     awk '
         NR == 1 && $0 == "---"  { inside = 1; next }
         inside && $0 == "---"   { inside = 0; next }
@@ -57,20 +45,20 @@ is_generated() {
     [ -e "$1" ] && head -n 10 "$1" | grep -qF "$marker"
 }
 
-name_of() { # name_of <arg>: "blog/my-post/" -> "my-post"
+name_of() 
     local name=${1%/}
     name=${name#blog/}
     [ -n "$name" ] && [[ $name != */* ]] || die "bad post name: $1"
     echo "$name"
 }
 
-md_of() { # md_of <dir>: the single .md in a post folder
+md_of() {
     local mds=("$1"/*.md)
     [ ${#mds[@]} -eq 1 ] || return 1
     echo "${mds[0]}"
 }
 
-build() { # build <name>: blog/<name>/*.md -> blog/<name>/index.html
+build() {
     local dir="blog/$1" out="blog/$1/index.html" md title date desc content
     [ -d "$dir" ] || { echo "no such post: $dir" >&2; return 1; }
     [[ $1 == _* ]] && { echo "$dir is a draft, rename it without the _ to publish" >&2; return 1; }
@@ -114,7 +102,7 @@ build() { # build <name>: blog/<name>/*.md -> blog/<name>/index.html
     echo "built $out"
 }
 
-write_list() { # rebuild the post list in index.html from the published posts
+write_list() {
     local dir name md out rows block title date desc
     rows=$(mktemp)
     block=$(mktemp)
@@ -151,7 +139,6 @@ write_list() { # rebuild the post list in index.html from the published posts
         die 'index.html is missing the <ul class="links posts"> list'
     fi
 
-    # replace everything inside <ul class="links posts"> ... </ul>
     awk '
         FNR == NR                         { list = list $0 "\n"; next }
         skip && /<\/ul>/                  { printf "%s", list; skip = 0 }

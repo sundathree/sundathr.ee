@@ -1,9 +1,8 @@
 let topZ = 0;
-const stacked = window.matchMedia("(max-width: 700px)"); // same breakpoint as style.css
+const stacked = window.matchMedia("(max-width: 700px)");
 const windows = document.querySelectorAll(".window");
 windows.forEach(el => dragElement(el));
 
-// drop positions from dragging when the screen gets small enough to stack the windows
 stacked.addEventListener('change', e => {
     if (e.matches) windows.forEach(el => el.style.top = el.style.left = "");
 });
