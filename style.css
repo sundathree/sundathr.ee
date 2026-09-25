@@ -3,6 +3,8 @@
     --text: #ffffff;
     --muted: #7f7f7f;
     --bg: #080808;
+    --link: #8ab4f8;
+    --link-visited: #c58af9;
     --gradient-top: rgba(127, 127, 191, 0.5);
     --gradient-bottom: rgba(63, 63, 127, 0.5);
 }
@@ -11,6 +13,7 @@ html {
     min-height: 100vh;
     display: flex;
     background: linear-gradient(var(--gradient-top), var(--gradient-bottom)), url("assets/stars.png");
+    background-attachment: fixed;
 }
 
 body {
@@ -22,6 +25,9 @@ body {
 h1, h2, h3, h4, h5, h6, p {
     margin: 0;
 }
+
+a         { color: var(--link); }
+a:visited { color: var(--link-visited); }
 
 .window {
     position: absolute;
@@ -37,6 +43,11 @@ h1, h2, h3, h4, h5, h6, p {
     color: var(--bg);
     padding: 0 2px;
     font-weight: bold;
+}
+
+.window-title a {
+    color: inherit;
+    text-decoration: none;
 }
 
 .intro {
@@ -62,9 +73,97 @@ h1, h2, h3, h4, h5, h6, p {
     top: 8vh;
     width: 300px;
 }
+#window-blog {
+    left: calc(30vw + 332px);
+    top: 8vh;
+    width: 300px;
+}
 #window-kroshik {
     left: 50vw;
     top: 16vh;
+}
+
+.posts {
+    margin: 0;
+    max-height: 40vh;
+    overflow-y: auto;
+    list-style-type: '» ';
+    padding-left: 32px;
+}
+
+.posts li {
+    margin-bottom: 0.5em;
+}
+
+.entry h1 {
+    font-size: 1em;
+    font-style: italic;
+}
+
+.entry h2 {
+    font-size: 0.9em;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.date {
+    font-size: 0.8em;
+    font-style: italic;
+    color: var(--muted);
+}
+
+.window-post {
+    position: relative;
+    width: min(640px, 100vw - 32px);
+    margin: 8vh 0;
+}
+
+.post {
+    padding: 0 16px 16px 16px;
+    line-height: 1.5;
+}
+
+.post p, .post ul, .post ol, .post pre, .post blockquote {
+    margin: 0 0 1em 0;
+}
+
+.post h2, .post h3 {
+    font-style: italic;
+    margin: 1em 0 0.25em 0;
+}
+
+.post img {
+    max-width: 100%;
+    display: block;
+}
+
+.post pre {
+    border: 1px solid var(--muted);
+    padding: 8px;
+    overflow-x: auto;
+}
+
+.post blockquote {
+    font-style: italic;
+    border-left: 2px solid var(--muted);
+    padding-left: 12px;
+}
+
+@media (max-width: 700px) {
+    body {
+        width: 100%;
+        margin: 0;
+    }
+    #window-contact, #window-blog, #window-kroshik {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: auto;
+        margin: 16px;
+    }
+    .window-post {
+        margin: 16px;
+    }
 }
 
 [data-tooltip] {
