@@ -132,7 +132,7 @@ write_list() {
         echo "                </li>"
     done > "$block"
 
-    [ -s "$block" ] || echo "                <li class=\"empty\">nothing here yet</li>" > "$block"
+    [ -s "$block" ] || echo "                <li class=\"empty\">nothing here yet...</li>" > "$block"
 
     if ! grep -q '<ul class="links posts">' index.html; then
         rm -f "$rows" "$block"
