@@ -45,7 +45,7 @@ is_generated() {
     [ -e "$1" ] && head -n 10 "$1" | grep -qF "$marker"
 }
 
-name_of() 
+name_of() {
     local name=${1%/}
     name=${name#blog/}
     [ -n "$name" ] && [[ $name != */* ]] || die "bad post name: $1"
