@@ -89,7 +89,7 @@ build() {
             return out s
         }
         BEGIN { while ((getline line < cf) > 0) body = body line "\n" }
-        $0 == "{{content}}" { printf "%s", body; next }
+        $0 ~ /^[ \t]*\{\{content\}\}[ \t]*$/ { printf "%s", body; next }
         {
             $0 = rep($0, "{{title}}", ENVIRON["TITLE"])
             $0 = rep($0, "{{date}}", ENVIRON["DATE"])

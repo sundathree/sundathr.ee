@@ -1,24 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <meta name="description" content="{{description}}">
         <meta name="generator" content="blog.sh">
         <link rel="stylesheet" href="../../style.css">
-        <title>{{title}}</title>
+        <title>{{title}} - sundathr.ee</title>
     </head>
     <body>
-        <div class="window window-post">
-            <div class="window-title"><a href="../../index.html">sundathr.ee</a> / blog</div>
-            <div class="intro">
-                <h1>{{title}}</h1>
-                <p><time>{{date}}</time></p>
-            </div>
+        <div class="outer">
+            <aside class="sidebar">
+                <p class="sitename"><a href="../../index.html">sundathr.ee</a></p>
+                <ul class="clean">
+                    <li><a href="../../index.html">home</a></li>
+                    <li><a href="../../index.html#blog">all posts</a></li>
+                    <li><a href="../../index.html#contact">contact</a></li>
+                </ul>
+            </aside>
 
-            <article class="post">
-                {{content}}
-            </article>
+            <main class="main">
+                <article class="post">
+                    <h1>{{title}}</h1>
+                    <p class="date"><time>{{date}}</time></p>
+                    {{content}}
+                </article>
+                <p class="stamp"><a href="../../index.html#blog">&larr; back to all posts</a></p>
+            </main>
         </div>
     </body>
 </html>

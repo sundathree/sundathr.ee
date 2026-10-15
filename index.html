@@ -1,39 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="stylesheet" href="style.css">
-        <script src="window.js" defer></script>
-        <title>sundathr.ee/</title>
+        <title>sundathr.ee</title>
     </head>
     <body>
-        <div class="window" id="window-contact">
-            <div class="window-title">contact</div>
-            <div class="intro">
-                <h1>Where am I?</h1>
-                <p>Find me here</p>
-            </div>
+        <div class="outer">
+            <aside class="sidebar" id="contact">
+                <p class="sitename"><a href="index.html">sundathr.ee</a></p>
+                <ul class="clean">
+                    <li>
+                        Mail: <a href="mailto:me@sundathr.ee">me@sundathr.ee</a>
+                        <a href="mailto:dev@sundathr.ee">dev@sundathr.ee</a>
+                    </li>
+                    <li>Github: <a href="https://github.com/sundathree">sundathree</a></li>
+                    <li>Twitter: <a href="https://twitter.com/sundathree">@sundathree</a></li>
+                    <li>YouTube: <a href="https://youtube.com/@sundathree">@sundathree</a></li>
+                </ul>
+            </aside>
 
-            <div class="links">
-                <p><b>mail</b>
-                <a href="mailto:me@sundathr.ee" data-tooltip="me@sundathr.ee">me</a>,
-                <a href="mailto:dev@sundathr.ee" data-tooltip="dev@sundathr.ee">dev</a><br>
-                <b>github</b> <a href="https://github.com/sundathree" title="github.com/sundathree" target="_blank">sundathree</a><br>
-                <b>twitter</b> <a href="https://twitter.com/sundathree" title="twitter.com/sundathree" target="_blank">@sundathree</a><br>
-                <b>youtube</b> <a href="https://youtube.com/@sundathree" title="youtube.com/@sundathree" target="_blank">@sundathree</a></p>
-            </div>
-        </div>
-        <div class="window" id="window-blog">
-            <div class="window-title">blog</div>
-            <div class="intro">
-                <h1>What am I up to?</h1>
+            <main class="main" id="blog">
+                <h2>What am I up to?</h2>
                 <p>Read about it here</p>
-            </div>
 
-            <ul class="links posts">
+                <ul class="links posts">
                 <li class="empty">nothing here yet...</li>
-            </ul>
+                </ul>
+            </main>
         </div>
     </body>
 </html>

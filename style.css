@@ -1,194 +1,202 @@
 :root {
-    --accent: #ffffff;
-    --text: #ffffff;
-    --muted: #7f7f7f;
-    --bg: #080808;
-    --link: #8ab4f8;
-    --link-visited: #c58af9;
-    --gradient-top: rgba(127, 127, 191, 0.5);
-    --gradient-bottom: rgba(63, 63, 127, 0.5);
+    color-scheme: light dark;
+    --text: #000000;
+    --bg: #ffffff;
+    --code: #dddddd;
+    --sidebar: #dfdfc0;
+    --muted: #555555;
+    --border: #000000;
+    --link: #0000ee;
+    --link-visited: #551a8b;
 }
 
-html {
-    min-height: 100vh;
-    display: flex;
-    background: linear-gradient(var(--gradient-top), var(--gradient-bottom)), url("assets/stars.png");
-    background-attachment: fixed;
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #e8e8e8;
+        --bg: #111111;
+        --code: #2a2a2a;
+        --sidebar: #2b2b22;
+        --muted: #aaaaaa;
+        --border: #e8e8e8;
+        --link: #8ab4f8;
+        --link-visited: #c58af9;
+    }
 }
 
 body {
-    font-family: Cambria, Georgia, serif;
+    background: var(--bg);
     color: var(--text);
-    margin: auto;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+    line-height: 1.4;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 10px;
 }
 
-h1, h2, h3, h4, h5, h6, p {
-    margin: 0;
+h1, h2, h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
 
 a         { color: var(--link); }
 a:visited { color: var(--link-visited); }
 
-.window {
-    position: absolute;
-    background: var(--bg);
-    border: 1px solid;
-    border-color: var(--accent);
-    overflow: hidden;
-    box-shadow: 0 0 32px #000;
+.outer {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-top: 10px;
 }
 
-.window-title {
-    background: var(--accent);
-    color: var(--bg);
-    padding: 0 2px;
-    font-weight: bold;
+.sidebar {
+    flex: 0 0 220px;
+    background: var(--sidebar);
+    border: 1px solid var(--border);
+    padding: 8px;
+    font-size: 15px;
 }
 
-.window-title a {
-    color: inherit;
+.sitename {
+    text-align: center;
+    font: bold 1.2em Arial, Helvetica, sans-serif;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+.sidebar .sitename a {
+    color: var(--text);
     text-decoration: none;
 }
 
-.intro {
-    padding: 16px;
+.sidebar h2 {
+    margin: 0 0 4px 0;
+    font-size: 1.2em;
 }
 
-.links {
-    padding: 0 16px 16px 16px;
+.sidebar p {
+    margin: 0 0 8px 0;
 }
 
-.intro p {
-    font-style: italic;
-    color: var(--muted);
+.sidebar .sitename + * {
+    margin-top: 8px;
 }
 
-#window-kroshik img {
-    max-width: 256px;
-    display: block;
+.main {
+    flex: 1;
+    min-width: 0;
+    max-width: 724px;
 }
 
-#window-contact {
-    left: 30vw;
-    top: 8vh;
-    width: 300px;
+.main > h2 {
+    margin: 4px 0;
+    font-size: 1.3em;
 }
-#window-blog {
-    left: calc(30vw + 332px);
-    top: 8vh;
-    width: 300px;
+
+.main > p {
+    margin: 0 0 15px 0;
 }
-#window-kroshik {
-    left: 50vw;
-    top: 16vh;
+
+ul.clean {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul.clean li {
+    padding: 2px 0;
 }
 
 .posts {
-    margin: 0;
-    max-height: 40vh;
-    overflow-y: auto;
-    list-style-type: '» ';
-    padding-left: 32px;
+    padding-left: 1.2em;
 }
 
 .posts li {
-    margin-bottom: 0.5em;
+    margin-bottom: 12px;
 }
 
 .posts li.empty {
     list-style: none;
-    margin-left: -16px;
+    margin-left: -1.2em;
     font-style: italic;
     color: var(--muted);
 }
 
 .entry h1 {
+    margin: 0;
     font-size: 1em;
-    font-style: italic;
 }
 
 .entry h2 {
-    font-size: 0.9em;
+    margin: 0;
+    font-family: inherit;
+    font-size: 1em;
     font-weight: normal;
-    font-style: italic;
 }
 
 .date {
-    font-size: 0.8em;
-    font-style: italic;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.7em;
     color: var(--muted);
 }
 
-.window-post {
-    position: relative;
-    width: min(640px, 100vw - 32px);
-    margin: 8vh 0;
+.stamp {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.7em;
+    color: var(--muted);
+    margin: 30px 0 10px 0;
 }
 
-.post {
-    padding: 0 16px 16px 16px;
-    line-height: 1.5;
+/* single post */
+
+.post h1 {
+    margin: 8px 0 0 0;
+    font-size: 2em;
 }
 
-.post p, .post ul, .post ol, .post pre, .post blockquote {
-    margin: 0 0 1em 0;
+.post .date {
+    margin: 0 0 20px 0;
 }
 
-.post h2, .post h3 {
-    font-style: italic;
-    margin: 1em 0 0.25em 0;
+.post h2 {
+    margin: 25px 0 8px 0;
+    font-size: 1.3em;
 }
 
-.post img {
+.post h3 {
+    margin: 8px 0 2px 0;
+    font-size: 1em;
+}
+
+.post img, .post video {
     max-width: 100%;
     display: block;
 }
 
 .post pre {
-    border: 1px solid var(--muted);
+    background: var(--code);
+    border: 1px solid var(--border);
     padding: 8px;
     overflow-x: auto;
+    font-size: 0.8em;
 }
 
 .post blockquote {
-    font-style: italic;
-    border-left: 2px solid var(--muted);
+    margin-left: 0;
     padding-left: 12px;
+    border-left: 2px solid var(--muted);
+    font-style: italic;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 720px) {
     body {
-        width: 100%;
-        margin: 0;
+        font-size: 18px;
     }
-    #window-contact, #window-blog, #window-kroshik {
-        position: relative;
-        left: auto;
-        top: auto;
-        width: auto;
-        margin: 16px;
+    .outer {
+        flex-direction: column;
     }
-    .window-post {
-        margin: 16px;
+    .sidebar {
+        flex: none;
+        align-self: stretch;
     }
-}
-
-[data-tooltip] {
-    position: relative;
-}
-
-[data-tooltip]::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: 100%;
-    left: 0;
-    background: var(--bg);
-    border: 1px solid var(--accent);
-    padding: 2px 6px;
-    white-space: nowrap;
-    display: none;
-}
-
-[data-tooltip]:hover::after {
-    display: block;
 }
